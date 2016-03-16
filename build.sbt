@@ -5,11 +5,21 @@ version := "1.0"
 scalaVersion := "2.11.8"
 
 
+Keys.useJCenter := true
+
+/* auto-header configuration */
+import de.heikoseeberger.sbtheader.license.Apache2_0
+headers := Map(
+  "scala" → Apache2_0("2016", "fester.io"),
+  "conf" → Apache2_0("2016", "fester.io"))
+
+
 /* scala library dependencies */
 
 val ScalaLoggingVersion = "+"
 val AkkaVersion = "2.4.2"
 val ScaldiVersion = "+"
+val ConfigsVersion = "0.3.+"
 
 libraryDependencies ++= Seq(
   "com.typesafe.scala-logging"    %% "scala-logging"                              % ScalaLoggingVersion,
@@ -19,9 +29,15 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka"             %% "akka-http-spray-json-experimental"          % AkkaVersion,
   "com.typesafe.akka"             %% "akka-cluster"                               % AkkaVersion,
   "com.typesafe.akka"             %% "akka-cluster-tools"                         % AkkaVersion,
+  "com.typesafe.akka"             %% "akka-cluster-metrics"                       % AkkaVersion,
+  "com.typesafe.akka"             %% "akka-agent"                                 % AkkaVersion,
+  "com.typesafe.akka"             %% "akka-persistence"                           % AkkaVersion,
+  "com.typesafe.akka"             %% "akka-slf4j"                                 % AkkaVersion,
 
   "org.scaldi"                    %% "scaldi"                                     % ScaldiVersion,
-  "org.scaldi"                    %% "scaldi-akka"                                % ScaldiVersion)
+  "org.scaldi"                    %% "scaldi-akka"                                % ScaldiVersion,
+
+  "com.github.kxbmap"             %% "configs"                                    % ConfigsVersion)
 
 
 /* scala test library dependencies */
