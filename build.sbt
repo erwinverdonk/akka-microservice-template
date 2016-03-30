@@ -20,6 +20,8 @@ val ScalaLoggingVersion = "+"
 val AkkaVersion = "2.4.2"
 val ScaldiVersion = "+"
 val ConfigsVersion = "0.3.+"
+val SigarLoaderVersion = "1.6.6-rev002"
+val KamonVersion = "0.6.+"
 
 libraryDependencies ++= Seq(
   "com.typesafe.scala-logging"    %% "scala-logging"                              % ScalaLoggingVersion,
@@ -37,7 +39,16 @@ libraryDependencies ++= Seq(
   "org.scaldi"                    %% "scaldi"                                     % ScaldiVersion,
   "org.scaldi"                    %% "scaldi-akka"                                % ScaldiVersion,
 
-  "com.github.kxbmap"             %% "configs"                                    % ConfigsVersion)
+  "com.github.kxbmap"             %% "configs"                                    % ConfigsVersion,
+
+  "io.kamon"                      %  "sigar-loader"                               % SigarLoaderVersion,
+  "io.kamon"                      %% "kamon-core"                                 % KamonVersion,
+  "io.kamon"                      %% "kamon-scala"                                % KamonVersion,
+  "io.kamon"                      %% "kamon-akka"                                 % KamonVersion,
+  "io.kamon"                      %% "kamon-autoweave"                            % KamonVersion,
+  "io.kamon"                      %% "kamon-annotation"                           % KamonVersion,
+  "io.kamon"                      %% "kamon-statsd"                               % KamonVersion,
+  "io.kamon"                      %% "kamon-system-metrics"                       % KamonVersion)
 
 
 /* scala test library dependencies */
