@@ -17,6 +17,7 @@
 package io.fester.microservice
 
 import akka.actor.ActorSystem
+import akka.cluster.Cluster
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
 import com.typesafe.config.Config
@@ -25,7 +26,7 @@ import io.fester.microservice.api.RestService
 import kamon.Kamon
 import scaldi.Injectable
 
-import scala.util.{Failure, Success}
+import scala.util._
 
 
 object Application extends App with LazyLogging {
@@ -38,7 +39,7 @@ object Application extends App with LazyLogging {
 
   implicit val inj = new ApplicationModule
 
-  implicit val system = inject[ActorSystem]
+  implicit val system: ActorSystem = inject[ActorSystem]
   import system.dispatcher
 
   implicit val mat = ActorMaterializer()
@@ -46,13 +47,29 @@ object Application extends App with LazyLogging {
   val config = inject[Config]('applicationConfig)
   import com.github.kxbmap.configs.syntax._
 
-  val binding = Http().bindAndHandle(
-    handler = inject[RestService].route,
-    interface = config.get[String]("server.http.interface"),
-    port = config.get[Int]("server.http.port"))
+  val cluster = Cluster(system)
+  cluster.join(cluster.selfAddress)
 
-  binding onComplete {
-    case Success(v) ⇒ logger.info(s"Successfully bound server; binding=$binding")
-    case Failure(ex) ⇒ logger.error(s"Failed to bind server!", ex)
+  cluster registerOnMemberUp {
+    logger.info(s"Member[${cluster.selfAddress}] is UP, starting web server")
+    Http().bindAndHandle(
+      handler = inject[RestService].route,
+      interface = config.get[String]("server.http.interface"),
+      port = config.get[Int]("server.http.port")
+    ) onComplete {
+      case Success(v) ⇒ logger.info(s"Successfully started http server: $v")
+      case Failure(ex) ⇒
+        sys.error(s"Triggering shutdown as http server could not be started: $ex")
+        cluster.leave(cluster.selfAddress)
+        system.terminate()
+    }
+  }
+
+  cluster registerOnMemberRemoved {
+    logger.warn(s"Member[${cluster.selfAddress}] has been REMOVED, terminating")
+    system.registerOnTermination(System.exit(-1))
+    import scala.concurrent.duration._
+    system.scheduler.scheduleOnce(10.seconds)(System.exit(-1))
+    system.terminate()
   }
 }
