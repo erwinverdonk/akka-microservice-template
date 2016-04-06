@@ -17,7 +17,7 @@ headers := Map(
 /* scala library dependencies */
 
 val ScalaLoggingVersion = "+"
-val AkkaVersion = "2.4.2"
+val AkkaVersion = "2.4.3"
 val ScaldiVersion = "+"
 val ConfigsVersion = "0.3.+"
 val SigarLoaderVersion = "1.6.6-rev002"
