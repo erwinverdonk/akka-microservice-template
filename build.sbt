@@ -27,6 +27,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.scala-logging"    %% "scala-logging"                              % ScalaLoggingVersion,
 
   "com.typesafe.akka"             %% "akka-actor"                                 % AkkaVersion,
+  "com.typesafe.akka"             %% "akka-stream"                                % AkkaVersion,
   "com.typesafe.akka"             %% "akka-http-experimental"                     % AkkaVersion,
   "com.typesafe.akka"             %% "akka-http-spray-json-experimental"          % AkkaVersion,
   "com.typesafe.akka"             %% "akka-cluster"                               % AkkaVersion,
@@ -57,6 +58,7 @@ val ScalaTestVersion = "+"
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka"             %% "akka-testkit"                               % AkkaVersion             % Test,
+  "com.typesafe.akka"             %% "akka-stream-testkit"                        % AkkaVersion             % Test,
   "com.typesafe.akka"             %% "akka-http-testkit"                          % AkkaVersion             % Test,
 
   "org.scalatest"                 %% "scalatest"                                  % ScalaTestVersion        % Test,
