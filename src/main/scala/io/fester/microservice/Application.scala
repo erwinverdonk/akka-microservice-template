@@ -22,6 +22,7 @@ import akka.stream.ActorMaterializer
 import com.typesafe.config.Config
 import com.typesafe.scalalogging.LazyLogging
 import io.fester.microservice.api.RestService
+import kamon.Kamon
 import scaldi.Injectable
 
 import scala.util.{Failure, Success}
@@ -29,6 +30,11 @@ import scala.util.{Failure, Success}
 
 object Application extends App with LazyLogging {
   import Injectable._
+
+  Kamon.start()
+  sys addShutdownHook {
+    Kamon.shutdown()
+  }
 
   implicit val inj = new ApplicationModule
 
