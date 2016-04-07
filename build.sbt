@@ -63,6 +63,10 @@ libraryDependencies ++= Seq(
 
   "org.scalatest"                 %% "scalatest"                                  % ScalaTestVersion        % Test,
   "org.scalatest"                 %% "scalatest-matchers"                         % ScalaTestVersion        % Test)
+//@formatter:off
+dependencyOverrides ++= Set(
+  "com.typesafe.akka"             %% "akka-actor"                                 % AkkaVersion)
+//@formatter:on
 
 
 /* java library dependencies */
