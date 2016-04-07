@@ -23,6 +23,7 @@ val ConfigsVersion = "0.3.+"
 val SigarLoaderVersion = "1.6.6-rev002"
 val KamonVersion = "0.6.+"
 
+//@formatter:off
 libraryDependencies ++= Seq(
   "com.typesafe.scala-logging"    %% "scala-logging"                              % ScalaLoggingVersion,
 
@@ -50,12 +51,14 @@ libraryDependencies ++= Seq(
   "io.kamon"                      %% "kamon-annotation"                           % KamonVersion,
   "io.kamon"                      %% "kamon-statsd"                               % KamonVersion,
   "io.kamon"                      %% "kamon-system-metrics"                       % KamonVersion)
+//@formatter:on
 
 
 /* scala test library dependencies */
 
 val ScalaTestVersion = "+"
 
+//@formatter:off
 libraryDependencies ++= Seq(
   "com.typesafe.akka"             %% "akka-testkit"                               % AkkaVersion             % Test,
   "com.typesafe.akka"             %% "akka-stream-testkit"                        % AkkaVersion             % Test,
@@ -64,6 +67,8 @@ libraryDependencies ++= Seq(
 
   "org.scalatest"                 %% "scalatest"                                  % ScalaTestVersion        % Test,
   "org.scalatest"                 %% "scalatest-matchers"                         % ScalaTestVersion        % Test)
+//@formatter:on
+
 //@formatter:off
 dependencyOverrides ++= Set(
   "com.typesafe.akka"             %% "akka-actor"                                 % AkkaVersion)
@@ -74,12 +79,14 @@ dependencyOverrides ++= Set(
 
 val LogbackVersion = "+"
 
+//@formatter:off
 libraryDependencies ++= Seq(
   "ch.qos.logback"                % "logback-classic"                             % LogbackVersion)
+//@formatter:on
 
 
 /* java test library dependencies */
 
-libraryDependencies ++= Seq(
-
-)
+//@formatter:off
+libraryDependencies ++= Seq()
+//@formatter:on
