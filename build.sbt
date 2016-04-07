@@ -60,6 +60,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka"             %% "akka-testkit"                               % AkkaVersion             % Test,
   "com.typesafe.akka"             %% "akka-stream-testkit"                        % AkkaVersion             % Test,
   "com.typesafe.akka"             %% "akka-http-testkit"                          % AkkaVersion             % Test,
+  "com.typesafe.akka"             %% "akka-multi-node-testkit"                    % AkkaVersion             % Test,
 
   "org.scalatest"                 %% "scalatest"                                  % ScalaTestVersion        % Test,
   "org.scalatest"                 %% "scalatest-matchers"                         % ScalaTestVersion        % Test)
