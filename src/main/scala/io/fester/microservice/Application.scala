@@ -48,7 +48,6 @@ object Application extends App with LazyLogging {
   import com.github.kxbmap.configs.syntax._
 
   val cluster = Cluster(system)
-  cluster.join(cluster.selfAddress)
 
   cluster registerOnMemberUp {
     logger.info(s"Member[${cluster.selfAddress}] is UP, starting web server")
