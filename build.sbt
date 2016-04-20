@@ -85,7 +85,7 @@ val project = Project(
           events = testResults.events ++ multiJvmResults.events,
           summaries = testResults.summaries ++ multiJvmResults.summaries)
     },
-    jvmOptions in MultiJvm += "-Djava.library.path=/Users/jtb/Documents/develop/idea-projects/akka-microservice-template/native",
+    jvmOptions in MultiJvm += s"-Djava.library.path=${baseDirectory.toString}/native",
     licenses := Seq(("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html")))).
   configs(MultiJvm)
 
