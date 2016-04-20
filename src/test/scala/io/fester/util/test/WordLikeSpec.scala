@@ -4,7 +4,7 @@ import org.scalactic.TimesOnInt
 import org.scalatest._
 
 
-trait WordSpecLikeUnitSpec
+trait WordLikeSpec
   extends WordSpecLike
     with Matchers
     with OptionValues
