@@ -2,6 +2,7 @@ package io.fester.microservice.api
 
 import akka.actor.ActorSystem
 
+import scala.util.Try
 
 
 /** = Public API endpoint =
@@ -15,8 +16,20 @@ class PublicApi(implicit system: ActorSystem) {
   val route =
     extractMaterializer { implicit mat ⇒
       implicit val ec = mat.executionContext
+      //@formatter:off
       pathPrefix("api") {
-        complete(s"Public API")
+        pathEndOrSingleSlash {
+          complete(s"Public API")
+        } ~
+        pathPrefix("transform") {
+          path("nr-plus-one" / Segment) { nr ⇒
+            complete(add_1(nr).get)
+          }
+        }
       }
+      //@formatter:on
     }
+
+  def add_1(nr: String) =
+    Try(nr.toInt + 1) map (x ⇒ s"nr-plus-one: $x") recover { case ex ⇒ s"Failed to add one, reason=$ex" }
 }
