@@ -15,5 +15,5 @@ trait ActorModule extends Module {
 
   lazy val system = ActorSystem(applicationConfig.get[String]("cluster.name"))
 
-  system.actorOf(MemberManager.props, "memberManager")
+  system.actorOf(MemberManager.props(applicationConfig), "memberManager")
 }
