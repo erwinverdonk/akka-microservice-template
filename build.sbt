@@ -1,4 +1,4 @@
-name := "akka-microservice-template"
+name := "akka-microservice"
 
 version := "1.0"
 
@@ -50,6 +50,9 @@ libraryDependencies ++= Seq(
   "io.kamon"                      %% "kamon-annotation"                           % KamonVersion,
   "io.kamon"                      %% "kamon-statsd"                               % KamonVersion,
   "io.kamon"                      %% "kamon-system-metrics"                       % KamonVersion)
+
+dependencyOverrides ++= Set(
+  "com.typesafe.akka"             %% "akka-actor"                                 % AkkaVersion)
 
 
 /* scala test library dependencies */
