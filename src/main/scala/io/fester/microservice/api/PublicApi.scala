@@ -9,6 +9,7 @@ class PublicApi(implicit system: ActorSystem) {
   val route =
     extractMaterializer { implicit mat ⇒
       implicit val ec = mat.executionContext
+
       pathPrefix("api") {
         complete(s"Public API")
       }
