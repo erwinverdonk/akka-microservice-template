@@ -60,12 +60,12 @@ val DependencyOverrides = Set(
 //@formatter:on
 
 val project = Project(
-  id = "akka-micro-service-template",
+  id = "akka-microservice",
   base = file(".")).
   settings(SbtMultiJvm.multiJvmSettings: _*).
   settings(
     organization := "fester-io",
-    name := "akka-micro-service-template",
+    name := "akka-microservice",
     version := "1.0-SNAPSHOT",
     scalaVersion := "2.11.8",
     useJCenter := true,
